@@ -1,0 +1,82 @@
+html, body, div, h1, h2, textarea {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    color-scheme: light dark;
+    --bg: #fafafa;
+    --border: #ccc;
+    --fg: #333;
+    --link: #4973c1;
+    --bg-stale: #ffdada;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #202020;
+        --border: #666;
+        --fg: #ccc;
+        --link: #61afef;
+        --bg-stale: #7b0d0d;
+    }
+}
+
+body {
+    padding: 30px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: var(--fg);
+    background: var(--bg);
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+}
+
+.card {
+    flex: 1 0;
+    min-width: 300px;
+    min-height: 300px;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+}
+
+.value {
+    padding: 10px;
+    flex: 1;
+}
+
+textarea {
+    font: 16px monospace;
+    resize: none;
+}
+
+.stale {
+    background: var(--bg-stale);
+}
+
+footer {
+    text-align: center;
+    margin: 30px 0 0;
+}
