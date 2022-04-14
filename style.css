@@ -55,7 +55,7 @@ h1 {
   gap: 20px;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 950px) {
   header {
     display: flex;
     flex-flow: column nowrap;

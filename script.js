@@ -194,6 +194,14 @@ window.addEventListener("load", () => {
     }
   }
 
+  // Set up dropdown for choosing a sample equation.
+  const sampleSelect = document.getElementById("sampleSelect");
+  function onSampleSelectInput() {
+    graph.asciimath.set(sampleSelect.value);
+    graph.asciimath.update();
+  }
+  sampleSelect.addEventListener("input", onSampleSelectInput);
+
   // Set up slider to change the amount of space in cards.
   const spaceStyle = document.createElement("style");
   document.head.appendChild(spaceStyle);
@@ -225,6 +233,6 @@ window.addEventListener("load", () => {
     handle: ".card-handle",
   });
 
-  // Update cards based on the default AsciiMath content in index.html.
-  graph.asciimath.update();
+  // Start with a sample equation.
+  onSampleSelectInput();
 });
