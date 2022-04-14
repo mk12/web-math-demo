@@ -1,82 +1,168 @@
 html, body, div, h1, h2, textarea {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 :root {
-    color-scheme: light dark;
-    --bg: #fafafa;
-    --border: #ccc;
-    --fg: #333;
-    --link: #4973c1;
-    --bg-stale: #ffdada;
+  color-scheme: light dark;
+  --bg: #fafafa;
+  --border: #ccc;
+  --fg: #333;
+  --link: #4973c1;
+  --bg-stale: #ffdada;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --bg: #202020;
-        --border: #666;
-        --fg: #ccc;
-        --link: #61afef;
-        --bg-stale: #7b0d0d;
-    }
+  :root {
+    --bg: #202020;
+    --border: #666;
+    --fg: #ccc;
+    --link: #61afef;
+    --bg-stale: #7b0d0d;
+  }
 }
 
 body {
-    padding: 30px;
-    font-family: Helvetica, Arial, sans-serif;
-    color: var(--fg);
-    background: var(--bg);
+  font-family: Helvetica, Arial, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
 }
 
 a {
-    color: var(--link);
-    text-decoration: none;
+  color: var(--link);
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
-}
-
-h1 {
-    text-align: center;
-    margin: 30px 0;
+  text-decoration: underline;
 }
 
 .wrapper {
-    margin: 0 auto;
+  margin: 50px 30px 30px;
+  position: relative;
+}
+
+h1 {
+  margin: 30px 0;
+  font-size: 32px;
+}
+
+.controls {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  display: flex;
+  gap: 20px;
+}
+
+@media screen and (max-width: 750px) {
+  header {
     display: flex;
-    flex-flow: row wrap;
-    gap: 20px;
+    flex-flow: column nowrap;
+    gap: 30px;
+    margin-bottom: 30px;
+    align-items: center;
+  }
+  
+  h1 {
+    text-align: center;
+    margin: 0;
+  }
+
+  .controls {
+    position: static;
+  }
+}
+
+input[type="range"] {
+  vertical-align: middle;
+  width: 80px;
+}
+
+.card-grid {
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px;
 }
 
 .card {
-    flex: 1 0;
-    min-width: 300px;
-    min-height: 300px;
-    padding: 10px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 10px;
+  flex: 1 0;
+  min-width: 300px;
+  min-height: 300px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  position: relative;
+  background: var(--bg);
 }
 
-.value {
-    padding: 10px;
-    flex: 1;
+.card-header {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  column-gap: 20px;
+  row-gap: 8px;
+  margin-right: 20px;
+}
+
+h2 {
+  font-size: 22px;
+  display: inline;
+}
+
+.card-handle {
+  cursor: move;
+  position: absolute;
+  top: 12px;
+  right: 10px;
+}
+
+.card-controls {
+  display: inline-block;
+}
+
+.card-handle::before {
+  content: "::::";
+}
+
+.card--stale {
+  background: var(--bg-stale);
+}
+
+.card--stale h2::after {
+  content: "(stale)";
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.card-value {
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 textarea {
-    font: 16px monospace;
-    resize: none;
+  font: 16px monospace;
+  resize: none;
 }
 
-.stale {
-    background: var(--bg-stale);
+.card-value--rendered {
+  font-size: 1.5em;
+}
+
+/* Match what KaTeX and MathJax do. */
+math {
+  font-size: 1.21em;
 }
 
 footer {
-    text-align: center;
-    margin: 30px 0 0;
+  text-align: center;
+  margin: 30px 0 0;
 }

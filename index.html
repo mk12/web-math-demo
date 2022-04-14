@@ -4,58 +4,112 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web Math Demo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Web Math Demo</h1>
   <div class="wrapper">
-    <div class="card">
-      <h2><a href="http://asciimath.org">AsciiMath</a></h2>
-      <textarea id="Asciimath" class="value">x = pm sqrt(b^2-4ac)/2a</textarea>
+    <header>
+      <h1>Web Math Demo</h1>
+      <div class="controls">
+        <label>
+          Space
+          <input id="spaceSlider" type="range" min="-1" max="1" value="0" step="1">
+        </label>
+        <label>
+          Size
+          <input id="sizeSlider" type="range" min="-1" max="1" value="0" step="1">
+        </label>
+        <label>
+          <input id="displayMode" type="checkbox" checked>
+          Display Mode
+        </label>
+      </div>
+    </header>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-header">
+          <h2>AsciiMath</h2>
+          <span class="card-handle"></span>
+        </div>
+        <textarea id="asciimath" class="card-value">f(x) = int_(-oo)^oo hat{f}(xi) e^(2 pi i xi x) ~ d xi</textarea>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2>TeX</h2>
+          <span class="card-handle"></span>
+        </div>
+        <textarea id="tex" class="card-value"></textarea>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2>MathML</h2>
+          <div class="card-controls">
+            <label>
+              <input type="radio" name="mathmlGenerator" value="mathjax" checked>
+              MathJax
+            </label>
+            <label>
+              <input type="radio" name="mathmlGenerator" value="katex">
+              KaTeX
+            </label>
+          </div>
+          <span class="card-handle"></span>
+        </div>
+        <textarea id="mathml" class="card-value"></textarea>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2>MathJax HTML+CSS</h2>
+          <span class="card-handle"></span>
+        </div>
+        <div class="card-value card-value--rendered">
+          <div id="mathjaxHtmlCss"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2>KaTeX HTML+CSS</h2>
+          <span class="card-handle"></span>
+        </div>
+        <div class="card-value card-value--rendered">
+          <div id="katexHtmlCss"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2>Native MathML</h2>
+          <span class="card-handle"></span>
+        </div>
+        <div class="card-value card-value--rendered">
+          <div id="nativeMathml"></div>
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <h2><a href="https://www.latex-project.org">TeX</a></h2>
-      <textarea id="Tex" class="value"></textarea>
-    </div>
-    <div class="card">
-      <h2><a href="https://www.w3.org/Math">MathML</a></h2>
-      <textarea id="Mathml" class="value"></textarea>
-    </div>
-    <div class="card">
-      <h2><a href="https://www.mathjax.org">MathJax</a></h2>
-      <div id="Mathjax" class="value"></div>
-    </div>
-    <div class="card">
-      <h2><a href="https://katex.org">KaTeX</a></h2>
-      <div id="Katex" class="value"></div>
-    </div>
-    <div class="card">
-      <h2><a href="https://www.w3.org/Math">MathML (browser)</a></h2>
-      <div id="MathmlBrowser" class="value"></div>
-    </div>
-    <div class="card">
-      <h2><a href="https://github.com/fred-wang/mathml.css">MathML (CSS)</a></h2>
-      <div id="MathmlCss" class="value"></div>
-    </div>
-    <div class="card">
-      <h2><a href="https://github.com/fred-wang/mathjax.js">MathML (MathJax)</a></h2>
-      <div id="MathmlMathjax" class="value"></div>
-    </div>
+    <footer>
+      <a href="https://github.com/mk12/web-math-demo">View on GitHub</a>
+    </footer>
   </div>
-  <footer>
-    <a href="https://github.com/mk12/web-math-demo">View on GitHub</a>
-  </footer>
-  <script>
-    // Prevent ASCIIMathML.js from running on load.
-    window.addEventListener("load", event => {
-      event.stopImmediatePropagation();
-    });
-  </script>
+  <!-- https://github.com/SortableJS/Sortable -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
   <!-- https://github.com/christianp/asciimath2tex -->
-  <script src="https://unpkg.com/asciimath2tex@1.3.0/dist/asciimath2tex.umd.js"></script>
-  <!-- https://github.com/asciimath/asciimathml/blob/master/ASCIIMathML.js -->
-  <script src="https://www1.chapman.edu/~jipsen/mathml/ASCIIMathML.js"></script>
-  <script src="script.js">
+  <script async src="https://unpkg.com/asciimath2tex@1.3.0/dist/asciimath2tex.umd.js"></script>
+  <!-- https://katex.org/docs/browser.html -->
+  <script async src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script>
+  <!-- https://docs.mathjax.org/en/latest/options/startup/startup.html -->
+  <script>
+    MathJax = {
+      startup: { typeset: false },
+      options: {
+        enableMenu: false,
+        renderActions: {
+          assistiveMml: [],
+        },
+      },
+    };
   </script>
+  <!--https://docs.mathjax.org/en/latest/web/components/combined.html -->
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script async src="script.js"></script>
 </body>
 </html>
