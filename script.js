@@ -202,24 +202,11 @@ window.addEventListener("load", () => {
   }
   sampleSelect.addEventListener("input", onSampleSelectInput);
 
-  // Set up slider to change the amount of space in cards.
-  const spaceStyle = document.createElement("style");
-  document.head.appendChild(spaceStyle);
-  document.getElementById("spaceSlider").addEventListener("input", function () {
-    const value = 300 + 100 * this.value;
-    spaceStyle.innerHTML = `
-      .card {
-        min-width: ${value}px;
-        min-height: ${value}px;
-      }
-    `;
-  });
-
   // Set up slider to change the size of rendered math.
   const sizeStyle = document.createElement("style");
   document.head.appendChild(sizeStyle);
   document.getElementById("sizeSlider").addEventListener("input", function () {
-    const value = 1.5 + 0.5 * this.value;
+    const value = 1.5 + 0.75 * this.value;
     sizeStyle.innerHTML = `
       div.card-value {
         font-size: ${value}em;
