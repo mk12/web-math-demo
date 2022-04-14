@@ -69,6 +69,14 @@ window.addEventListener("load", () => {
     node.card.classList.remove("card--stale");
   }
 
+  // Set up dropdown for choosing a sample equation.
+  const sampleSelect = document.getElementById("sampleSelect");
+  function onSampleSelectInput() {
+    graph.asciimath.set(sampleSelect.value);
+    graph.asciimath.update();
+  }
+  sampleSelect.addEventListener("input", onSampleSelectInput);
+
   // Add event listeners for reactive updates.
   for (const node of Object.values(graph)) {
     if (!node.outgoing) {
@@ -83,7 +91,10 @@ window.addEventListener("load", () => {
       });
       lastUpdateFn = node.update;
     };
-    node.element.addEventListener("input", () => node.update());
+    node.element.addEventListener("input", () => {
+      sampleSelect.value = "";
+      node.update();
+    });
   }
 
   const asciiMathParser = new AsciiMathParser();
@@ -194,21 +205,13 @@ window.addEventListener("load", () => {
     }
   }
 
-  // Set up dropdown for choosing a sample equation.
-  const sampleSelect = document.getElementById("sampleSelect");
-  function onSampleSelectInput() {
-    graph.asciimath.set(sampleSelect.value);
-    graph.asciimath.update();
-  }
-  sampleSelect.addEventListener("input", onSampleSelectInput);
-
   // Set up slider to change the size of rendered math.
   const sizeStyle = document.createElement("style");
   document.head.appendChild(sizeStyle);
   document.getElementById("sizeSlider").addEventListener("input", function () {
     const value = 1.5 + 0.75 * this.value;
     sizeStyle.innerHTML = `
-      div.card-value {
+      .card-value--rendered {
         font-size: ${value}em;
       }
     `;
