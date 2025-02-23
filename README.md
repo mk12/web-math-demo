@@ -2,7 +2,9 @@
 
 Web Math Demo is a web app that compares ways of rendering math notation. This is useful if you're trying to choose a strategy for your blog or website.
 
-It supports [AsciiMath], [TeX], and [MathML] input, and renders to [MathJax] HTML+CSS, [KaTeX] HTML+CSS, and using the browser's native [MathML] rendering. As of 2022, Firefox has the best MathML support, Safari has lower quality support, and Chrome has none at all.
+It supports [AsciiMath], [TeX], and [MathML] input, and renders to [MathJax] HTML+CSS, [KaTeX] HTML+CSS, and using the browser's native [MathML] rendering. You can also select MathML webfonts loaded from [fred-wang/MathFonts](https://github.com/fred-wang/MathFonts). As of 2025, all major browsers support MathML.
+
+See also Frédéric Wang's [Mozilla MathML Test](https://fred-wang.github.io/MathFonts/mozilla_mathml_test/) for more MathML demos.
 
 ## Usage
 
