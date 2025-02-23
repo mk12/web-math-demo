@@ -156,23 +156,16 @@ window.addEventListener("load", () => {
   }
 
   // Set up dropdown for choosing native MathML font.
-  const mathmlFontStyle = document.createElement("style");
-  document.head.appendChild(mathmlFontStyle);
+  const mathmlFontLink = document.createElement("link");
+  mathmlFontLink.setAttribute("rel", "stylesheet");
+  document.head.appendChild(mathmlFontLink);
   document.getElementById("mathmlFontSelect").addEventListener("input", function () {
-    const id = this.value;
-    const name = this.selectedOptions[0].label;
-    if (id === "") {
-      mathmlFontStyle.innerHTML = "";
+    if (this.value === "") {
+      mathmlFontLink.removeAttribute("href");
     } else {
-      mathmlFontStyle.innerHTML = `
-        @font-face {
-          font-family: "${id}";
-          src: url("https://fred-wang.github.io/MathFonts/${name}/${id}.woff2");
-        }
-        math {
-          font-family: "${id}";
-        }
-      `;
+      const name = this.value.replaceAll(" ", "");
+      mathmlFontLink.setAttribute("href",
+        `https://fred-wang.github.io/MathFonts/${name}/mathfonts.css`);
     }
   });
 
