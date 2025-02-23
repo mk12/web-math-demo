@@ -29,12 +29,15 @@ body {
 }
 
 a {
-  color: var(--link);
+  color: var(--fg);
+  border-bottom: 1px dotted var(--fg);
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
+a:hover, a:active {
+  color: var(--link);
+  border-bottom: 1px solid var(--link);
+  text-decoration: none;
 }
 
 .wrapper {
