@@ -87,6 +87,30 @@
       <div class="card">
         <div class="card-header">
           <h2>Native MathML</h2>
+          <div class="card-controls">
+            Font
+            <label>
+              <select id="mathmlFontSelect">
+                <option value="" selected>Browser default</option>
+                <option value="Asana-Math">Asana</option>
+                <option value="DejaVuMathTeXGyre">DejaVu</option>
+                <option value="FiraMath-Regular">FiraMath</option>
+                <option value="Garamond-Math">Garamond</option>
+                <option value="GFS_NeoHellenic">GFS NeoHellenic</option>
+                <option value="LatinModern">Latin Modern</option>
+                <option value="LeteSansMath">Lete Sans Math</option>
+                <option value="Libertinus">Libertinus</option>
+                <option value="NewComputerModern">New Computer Modern</option>
+                <option value="NewComputerModernSans">New Computer Modern Sans</option>
+                <option value="STIX">STIX</option>
+                <option value="TeXGyreBonum">TeX Gyre Bonum</option>
+                <option value="TeXGyrePagella">TeX Gyre Pagella</option>
+                <option value="TeXGyreSchola">TeX Gyre Schola</option>
+                <option value="TeXGyreTermes">TeX Gyre Termes</option>
+                <option value="XITS">XITS</option>
+              </select>
+            </label>
+          </div>
           <span class="card-handle"></span>
         </div>
         <div class="card-value card-value--rendered">
@@ -95,7 +119,10 @@
       </div>
     </div>
     <footer>
-      <a href="https://github.com/mk12/web-math-demo">View on GitHub</a>
+      <ul class="footer-links">
+        <li><a href="https://github.com/mk12/web-math-demo">View on GitHub</a></li>
+        <li>Fonts from <a href="https://fred-wang.github.io/MathFonts/">fred-wang/MathFonts</a></li>
+      </ul>
     </footer>
   </div>
   <!-- https://github.com/SortableJS/Sortable -->

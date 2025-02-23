@@ -171,6 +171,13 @@ math {
 }
 
 footer {
-  text-align: center;
   margin: 30px 0 0;
 }
+
+.footer-links {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  gap: 25px;
+}
+

@@ -12,7 +12,7 @@ window.addEventListener("load", () => {
   };
 
   const graph = {};
-  let lastUpdateFn = () => {};
+  let lastUpdateFn = () => { };
 
   // Populate nodes in the card graph.
   for (const [id, incoming] of Object.entries(derivations)) {
@@ -154,6 +154,27 @@ window.addEventListener("load", () => {
       throwOnError: false,
     };
   }
+
+  // Set up dropdown for choosing native MathML font.
+  const mathmlFontStyle = document.createElement("style");
+  document.head.appendChild(mathmlFontStyle);
+  document.getElementById("mathmlFontSelect").addEventListener("input", function () {
+    const id = this.value;
+    const name = this.selectedOptions[0].label;
+    if (id === "") {
+      mathmlFontStyle.innerHTML = "";
+    } else {
+      mathmlFontStyle.innerHTML = `
+        @font-face {
+          font-family: "${id}";
+          src: url("https://fred-wang.github.io/MathFonts/${name}/${id}.woff2");
+        }
+        math {
+          font-family: "${id}";
+        }
+      `;
+    }
+  });
 
   // Updates graph node y based on graph node x.
   function propagate(x, y) {
